@@ -51,7 +51,7 @@ public class IntList {
         if (L == null) {
             return null;
         }
-        IntList res = new IntList(L.first * L.first, null);
+        IntList res = new IntList(L.first * L.first, null); //res will always point to the start of the new list
         IntList ptr = res;
         L = L.rest;
         while (L != null) {
@@ -61,7 +61,6 @@ public class IntList {
         }
         return res;
     }
-
     /**
      * Returns a list equal to L with all elements squared. Non-destructive.
      */
@@ -82,7 +81,29 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+//        IntList head = A; //永远指向头部
+//        IntList ptr = head;
+//        while(ptr.rest != null) {
+//            ptr = ptr.rest;
+//        }
+//        IntList res = B;
+//        while(res != null) {
+//            ptr.rest = res;
+//            res = res.rest;
+//            ptr = ptr.rest;
+//        }
+//        return head;
+        if(A == null) {
+            return B;
+        }
+        IntList ptr = A;
+        // Find the end of A
+        while(ptr.rest != null) {
+            ptr = ptr.rest;
+        }
+        //Attach B to the A
+        ptr.rest = B;
+        return A;
     }
 
     /**
@@ -91,7 +112,16 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList head = new IntList(A.first, null);
+        IntList ptr = head;
+        A = A.rest;
+        while(A != null) {
+            ptr.rest = new IntList(A.first, null);
+            ptr = ptr.rest;
+            A = A.rest;
+        }
+        ptr.rest = B;
+        return head;
     }
 
 
